@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Eid Salami · Moseur Rohman Roche</title>
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Link to external CSS (style.css) -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- floating decorations -->
+  <div class="floating-eid">
+    <i class="fas fa-moon"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-lantern"></i>
+    <i class="fas fa-cloud-moon"></i>
+  </div>
+
+  <!-- main container -->
+  <div class="container" id="app">
+    <!-- navbar with dark mode -->
+    <nav class="navbar glass-card">
+      <span class="logo">✨ Eid Salami ✨</span>
+      <button class="dark-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="moon-animation"><i class="fas fa-crescent-moon"></i></div>
+      <h1 class="greeting">Eid Mubarak 🌙</h1>
+      <p class="sub-hero">Assalamu Alaikum! Send your Eid Salami to <br> <strong>Moseur Rohman Roche</strong> with love.</p>
+      <!-- Profile photo from provided image (hosted on ibb.co) -->
+      <img src="https://i.ibb.co.com/0jp6yvcQ/IMG-20260314-WA0012.jpg" alt="Siam Mahmud Mukti" class="profile-pic" onerror="this.src='https://via.placeholder.com/200/0f6b4a/ffffff?text=Siam+M'">
+      <p style="margin: 0.2rem 0 0.5rem;">— Siam Mahmud Mukti —</p>
+      <button class="btn-gold" id="heroSendBtn"><i class="fas fa-gift"></i> Send Salami</button>
+    </section>
+
+    <!-- ABOUT section -->
+    <section style="margin: 3rem 0;">
+      <div class="glass-card" style="text-align: center;">
+        <i class="fas fa-heart" style="color: var(--gold); font-size: 2.5rem;"></i>
+        <h2 class="section-title">A little note</h2>
+        <p style="font-size: 1.3rem; font-family: 'Amiri';">"Jazakumullahu Khayran for your generosity. May your Eid be filled with blessings and joy." <br> — Siam</p>
+      </div>
+    </section>
+
+    <!-- PAYMENT OPTIONS with copy -->
+    <section>
+      <h2 class="section-title">Send via bKash / Nagad</h2>
+      <div class="payment-cards">
+        <!-- bKash -->
+        <div class="pay-item glass-card">
+          <i class="fas fa-credit-card" style="color: #d4af37; font-size: 2rem;"></i>
+          <h3>bKash</h3>
+          <div class="pay-phone" id="bkashNumber">01817475950</div>
+          <button class="copy-btn" data-phone="01817475950"><i class="far fa-copy"></i> Copy</button>
+        </div>
+        <!-- Nagad -->
+        <div class="pay-item glass-card">
+          <i class="fas fa-mobile-alt" style="color: #d4af37; font-size: 2rem;"></i>
+          <h3>Nagad</h3>
+          <div class="pay-phone" id="nagadNumber">01603334751</div>
+          <button class="copy-btn" data-phone="01603334751"><i class="far fa-copy"></i> Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Transaction Submit Form -->
+    <section style="margin: 3rem 0;" id="sendSection">
+      <div class="glass-card">
+        <h2 class="section-title">Submit your Salami</h2>
+        <form id="salamiForm">
+          <div class="form-grid">
+            <input type="text" placeholder="Your name" id="senderName" required>
+            <input type="number" placeholder="Amount (৳)" id="amount" required>
+            <select id="paymentMethod" required>
+              <option value="">Payment method</option>
+              <option value="bKash">bKash</option>
+              <option value="Nagad">Nagad</option>
+            </select>
+            <input type="text" placeholder="Transaction ID" id="txnId" required>
+            <textarea placeholder="Short message (optional)" id="shortMsg" rows="2" style="grid-column: span 2;"></textarea>
+          </div>
+          <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Send Salami</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Salami Wall live feed -->
+    <section>
+      <h2 class="section-title">✨ Salami Wall ✨</h2>
+      <div class="wall-grid" id="salamiWall">
+        <!-- Dynamically inserted via JS -->
+      </div>
+    </section>
+
+    <!-- Admin Panel (hidden by default) -->
+    <section class="admin-section" id="adminPanel">
+      <div class="glass-card" style="padding: 2rem;">
+        <h2 style="display: flex; gap: 10px;"><i class="fas fa-lock"></i> Admin Dashboard</h2>
+        <div class="stat-grid">
+          <div class="admin-card">Total Salami: <strong id="totalStat">0</strong></div>
+          <div class="admin-card">Pending: <strong id="pendingStat">0</strong></div>
+        </div>
+        <h3>Submissions (approve/delete)</h3>
+        <div id="adminSubmissions"></div>
+        <button class="btn-outline" id="exportBtn"><i class="fas fa-download"></i> Export CSV</button>
+        <hr style="margin: 1rem 0;">
+        <h4>Edit Payment Numbers</h4>
+        <input type="text" id="editBkash" value="01817475950"><br><br>
+        <input type="text" id="editNagad" value="01603334751"><br><br>
+        <button class="btn-gold" id="updatePayBtn">Update numbers</button>
+        <hr>
+        <button class="btn-outline" id="adminLogout">Logout</button>
+      </div>
+    </section>
+
+    <!-- Admin Login button -->
+    <button class="admin-login-btn" id="adminLoginBtn"><i class="fas fa-user-lock"></i> Admin</button>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+      <div class="modal-content">
+        <i class="fas fa-check-circle" style="font-size: 4rem; color: #0f6b4a;"></i>
+        <h2 style="color: var(--emerald);">Eid Mubarak!</h2>
+        <p>Your Salami has been sent. May Allah bless you.</p>
+        <button class="btn-gold" id="closeModal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics-compat.js"></script>
+
+  <!-- External JS file (script.js) -->
+  <script src="script.js"></script>
+</body>
+</html>
